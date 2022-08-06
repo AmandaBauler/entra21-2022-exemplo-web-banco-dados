@@ -1,0 +1,22 @@
+body{
+    background: #ccc;
+    color:red;
+}
+p{
+    font-size: 20;
+    color:blueviolet;
+    font-weight: 800;
+}
+a{
+    text-decoration: none;
+    background: white;
+    color: aqua;
+    border: 1px solid green;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+a:hover{
+    background: green;
+    color:white;
+}
