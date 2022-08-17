@@ -9,7 +9,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
     public class RacaController : Controller
     {
         private readonly RacaServico _racaServico;
-        
+
         // Construtor: Objetivo construir o objeto RacaController,
         //com o minimo necessário para o funcionamento correto
         public RacaController(ClinicaVeterinariaContexto contexto)
@@ -44,10 +44,10 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         }
 
         [Route("/raca/registrar")]
-        [HttpGet]
+        [HttpPost]
         public IActionResult Registrar(
-            [FromQuery] string nome,
-            [FromQuery] string especie)
+            [FromForm] string nome,
+            [FromForm] string especie)
         {
             _racaServico.Cadastrar(nome, especie);
 
@@ -57,7 +57,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         [Route("/raca/apagar")]
         [HttpGet]
         //https://localhost:porta/raca/apagar?id=4
-        public IActionResult Apagar([FromQuery]int id)
+        public IActionResult Apagar([FromQuery] int id)
         {
             _racaServico.Apagar(id);
 
@@ -78,12 +78,12 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
             return View("Editar");
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/raca/alterar")]
         public IActionResult Alterar(
-            [FromQuery] int id,
-            [FromQuery] string nome,
-            [FromQuery] string especie)
+            [FromForm] int id,
+            [FromForm] string nome,
+            [FromForm] string especie)
         {
             _racaServico.Alterar(id, nome, especie);
 
