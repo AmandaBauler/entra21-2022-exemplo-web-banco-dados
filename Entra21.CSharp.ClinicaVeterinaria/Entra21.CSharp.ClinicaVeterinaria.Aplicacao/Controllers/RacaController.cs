@@ -38,7 +38,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Aplicacao.Controllers
         {
             var especies = ObterEspecies();
 
-            ViewBag.Especie = especies;
+            ViewBag.Especies = especies;
 
             return View();
         }
