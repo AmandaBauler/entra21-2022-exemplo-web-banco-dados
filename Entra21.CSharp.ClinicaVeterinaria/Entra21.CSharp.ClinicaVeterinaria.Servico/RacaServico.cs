@@ -1,6 +1,7 @@
 ﻿using Entra21.CSharp.ClinicaVeterinaria.Repositorio;
 using Entra21.CSharp.ClinicaVeterinaria.Repositorio.BancoDados;
 using Entra21.CSharp.ClinicaVeterinaria.Repositorio.Entidades;
+using Entra21.CSharp.ClinicaVeterinaria.Servico.ViewModels;
 
 namespace Entra21.CSharp.ClinicaVeterinaria.Servico
 {
@@ -8,7 +9,7 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Servico
     // ou seja, deverá honrar as clausulas definidas na interface(contrato)
     public class RacaServico : IRacaServico
     {
-        private readonly RacaRepositorio _racaRepositorio;
+        private readonly IRacaRepositorio _racaRepositorio;
 
         //Construtor: construir o objeto de RacaServico com o minimo para a correta execução.
         public RacaServico(ClinicaVeterinariaContexto contexto)
@@ -31,15 +32,13 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Servico
             _racaRepositorio.Apagar(id);
         }
 
-        public void Cadastrar(string nome, string especie)
+        public void Cadastrar(RacaCadastrarViewModel racaCadastrarViewModel)
         {
             var raca = new Raca();
-            raca.Nome = nome;
-            raca.Especie = especie;
+            raca.Nome = racaCadastrarViewModel.Nome;
+            raca.Especie = racaCadastrarViewModel.Especie;
 
             _racaRepositorio.Cadastrar(raca);
-
-            Console.WriteLine($"Nome: {nome} especie: {especie}");
         }
 
         public Raca ObterPorId(int id)
@@ -54,6 +53,16 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Servico
             var racasDoBanco = _racaRepositorio.ObterTodos();
 
             return racasDoBanco;
+        }
+
+        public void Editar(RacaEditarViewModel racaEditarViewModel)
+        {
+            var raca = new Raca();
+            raca.Id = racaEditarViewModel.Id;
+            raca.Nome = racaEditarViewModel.Nome;
+            raca.Especie = racaEditarViewModel.Especie;
+
+            _racaRepositorio.Atualizar(raca);
         }
     }
 }
