@@ -7,8 +7,8 @@ namespace Entra21.CSharp.ClinicaVeterinaria.Servico.ViewModels
         //[Display(Name = "Nome")]
         [Display(Name = nameof(Nome))]
         [Required(ErrorMessage = "Preencha o campo {0}.")]
-        [MinLength(4, ErrorMessage = "{Nome} deve conter no mínimo {1} caracteres.")]
-        [MaxLength(50, ErrorMessage = "{1} deve conter no máximo {1} caracteres.")]
+        [MinLength(3, ErrorMessage = "{0} deve conter no mínimo {1} caracteres.")]
+        [MaxLength(50, ErrorMessage = "{0} deve conter no máximo {1} caracteres.")]
         public string Nome { get; set; }
 
 
